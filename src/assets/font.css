@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'PublicPixel';
+    src: url('PublicPixel.woff2') format('woff2'),
+        url('PublicPixel.woff') format('woff'),
+        url('PublicPixel.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* Menlo Regular */
+@font-face {
+    font-family: 'Menlo';
+    src: url('Menlo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    /* 400 */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Menlo Bold */
+@font-face {
+    font-family: 'Menlo';
+    src: url('Menlo-Bold.ttf') format('truetype');
+    font-weight: bold;
+    /* 700 */
+    font-style: normal;
+    font-display: swap;
+}

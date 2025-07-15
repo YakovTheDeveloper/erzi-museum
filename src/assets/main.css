@@ -1,0 +1,13 @@
+@import './base.css';
+@import './font.css';
+
+#app {
+  font-family: 'PublicPixel', monospace;
+  height: 100%;
+
+}
+
+a,
+.green {
+  text-decoration: none;
+}

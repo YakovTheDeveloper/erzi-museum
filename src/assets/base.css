@@ -1,0 +1,35 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {}
+
+/* semantic color variables for this project */
+:root {}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+html {
+  height: 2160px;
+  width: 3840px;
+}
+
+body {
+  height: 100%;
+  color: #fff;
+}
+
+button {
+  border: none;
+  outline: none;
+  width: fit-content;
+  color: inherit;
+  font-family: inherit;
+}
+
+.show {
+  opacity: 1;
+}
