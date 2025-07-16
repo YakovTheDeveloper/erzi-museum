@@ -8,7 +8,7 @@ import Main from '@/views/ui/main/Main.vue';
 
 <template>
   <main>
-    <!-- <Main></Main> -->
+    <Main></Main>
     <Game></Game>
     <GameOver />
   </main>

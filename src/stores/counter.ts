@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useUiStore = defineStore('counter', () => {
   const isGameOver = ref(false)
+  const isMainShow = ref(true)
 
   function showGameOver() {
     isGameOver.value = true
@@ -12,5 +13,13 @@ export const useUiStore = defineStore('counter', () => {
     isGameOver.value = false
   }
 
-  return { isGameOver, showGameOver, hideGameOver }
+  function showMain() {
+    isMainShow.value = true
+  }
+
+  function hideMain() {
+    isMainShow.value = false
+  }
+
+  return { isGameOver, showGameOver, hideGameOver, isMainShow, showMain, hideMain }
 })
