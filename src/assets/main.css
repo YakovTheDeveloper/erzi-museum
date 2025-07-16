@@ -5,6 +5,8 @@
 #app {
   font-family: 'PublicPixel', monospace;
   height: 100%;
+  position: relative;
+  overflow: hidden;
 
 }
 

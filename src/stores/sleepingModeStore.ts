@@ -17,7 +17,7 @@ export const useSleepingModeStore = defineStore('sleepingMode', () => {
   }>({
     id: -1,
     sleepModeSeconds: 200,
-    notificationSeconds: 2,
+    notificationSeconds: 30,
   })
 
   const show = () => {

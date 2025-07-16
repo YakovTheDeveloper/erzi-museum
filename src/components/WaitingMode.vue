@@ -1,7 +1,6 @@
-<!-- components/WaitingModal.vue -->
 <template>
-  <div :class="modalClasses" @click.stop="sleepingStore.hide">
-    <div class="modal-content">
+  <Transition name="slide-up-down">
+    <div v-if="isVisible" class="modal-content">
       <div class="countdown">{{ countdownValue }}</div>
       <h1 class="title">Завершение сеанса</h1>
       <p class="body">Из-за отсутствия активности программа скоро вернётся в главное меню</p>
@@ -18,19 +17,23 @@
         >
           На главную
         </button>
-        <button class="button" @click="sleepingStore.hide">Продолжить</button>
+        <button class="button pixel" @click="sleepingStore.hide"><span>Продолжить</span></button>
       </div>
     </div>
-  </div>
+  </Transition>
+  <Transition name="fade">
+    <div v-if="isVisible" class="waiting-modal" @click.stop="sleepingStore.hide"></div>
+  </Transition>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, Transition, watch, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSleepingModeStore } from '@/stores/sleepingModeStore'
 
-const modalClasses = computed(() => ['waiting-modal', isVisible.value && 'show'])
+const modalClasses = computed(() => ['waiting-modal'])
+// const modalClasses = computed(() => ['waiting-modal', isVisible.value && 'show'])
 
 // Store
 const sleepingStore = useSleepingModeStore()
@@ -86,7 +89,7 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .waiting-modal {
   position: absolute;
   inset: 0;
@@ -98,20 +101,26 @@ onUnmounted(() => {
   justify-content: center;
   color: white;
   transition: opacity 0.3s ease-out;
-  opacity: 0;
   overflow: hidden;
+  opacity: 1;
+  z-index: 1;
 
   &.show {
     opacity: 1;
     z-index: 1000;
 
     .modal-content {
-      transform: translateY(0);
+      //   transform: translateY(0);
     }
   }
 }
 
 .modal-content {
+  position: absolute;
+  z-index: 2;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
   width: 1226px;
   height: 960px;
   gap: 64px;
@@ -122,8 +131,6 @@ onUnmounted(() => {
   line-height: 100%;
   text-align: center;
   background-color: rgba(255, 255, 255, 1);
-  transform: translateY(1600px);
-  transition: transform 0.3s ease-out;
 }
 
 .countdown {
@@ -195,7 +202,6 @@ onUnmounted(() => {
   gap: 32px;
 
   .button {
-    font-weight: 600;
     font-size: 40px;
     line-height: 100%;
     width: 100%;
@@ -209,6 +215,63 @@ onUnmounted(() => {
       background-color: transparent;
       color: #dc1f25;
     }
+
+    &.pixel {
+      position: relative;
+
+      background: url('/images/bg-game-over-red.png');
+      background-position: 81% 16%;
+      background-repeat: no-repeat;
+      background-size: 1000%;
+
+      &:active {
+        &:before {
+          background-color: #5b0d0eab; /* red overlay with 50% opacity */
+        }
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(255, 0, 0, 0.808); /* red overlay with 50% opacity */
+        z-index: 0;
+      }
+      > * {
+        position: relative;
+        z-index: 1;
+      }
+    }
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+.slide-up-down-enter-active,
+.slide-up-down-leave-active {
+  transition: transform 0.4s ease;
+}
+
+.slide-up-down-enter-from {
+  transform: translate(50%, 2500px);
+}
+.slide-up-down-enter-to {
+  transform: translate(50%, 50%);
+}
+
+.slide-up-down-leave-from {
+  transform: translate(50%, 50%);
+}
+.slide-up-down-leave-to {
+  transform: translate(50%, 2500px);
 }
 </style>
