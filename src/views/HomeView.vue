@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import Game from '@/views/ui/main/Game.vue';
-import GameOver from '@/views/ui/main/GameOver.vue';
-import Main from '@/views/ui/main/Main.vue';
-
-
+import WaitingMode from '@/components/WaitingMode.vue'
+import Game from '@/views/ui/main/Game.vue'
+import GameOver from '@/views/ui/main/GameOver.vue'
+import Main from '@/views/ui/main/Main.vue'
 </script>
 
 <template>

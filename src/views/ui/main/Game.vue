@@ -150,7 +150,7 @@ button {
   }
   > * {
     position: relative;
-    z-index: 1;
+    z-index: 0;
   }
 }
 
